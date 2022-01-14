@@ -29,6 +29,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.recoveryroom.RecoveryRoom;
 
+import com.sun.istack.NotNull;
+
 /**
  * Simple JavaBean domain object representing a visit.
  *
@@ -59,6 +61,12 @@ public class Visit extends BaseEntity {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
+	
+	@ManyToOne
+    @JoinColumn(name="recoveryroom_id")
+	RecoveryRoom recoveryRoom;
+	
+	
 	/**
 	 * Creates a new instance of Visit for the current date
 	 */
@@ -115,12 +123,10 @@ public class Visit extends BaseEntity {
 	}
 
 	public RecoveryRoom getRecoveryRoom() {
-		// To be implemented
-		return null;
+		return this.recoveryRoom;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		this.recoveryRoom=room;
 	}
-
 }
